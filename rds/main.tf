@@ -46,3 +46,15 @@ resource "aws_rds_cluster" "rds-cluster-1" {
     Name = "Aurora rds cluster"
   }
 }
+
+
+resource "aws_rds_cluster_instance" "aurora_instance" {
+  count              = 2 
+  identifier         = "aurora-instance-${count.index}"
+  cluster_identifier = aws_rds_cluster.aurora_cluster.id
+  instance_class     = "db.t2.medium" 
+  engine             = aws_rds_cluster.aurora_cluster.engine
+  publicly_accessible = false
+  db_subnet_group_name = aws_db_subnet_group.rds_subnet_group.name
+
+}
