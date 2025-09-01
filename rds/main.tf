@@ -58,3 +58,13 @@ resource "aws_rds_cluster_instance" "aurora_instance" {
   db_subnet_group_name = aws_db_subnet_group.rds_subnet_group.name
 
 }
+resource "aws_rds_cluster_parameter_group" "aurora_pg" {
+  name        = "aurora-pg"
+  family      = "aurora-mysql8.0"
+  description = "Aurora MySQL parameter group"
+
+  parameter {
+    name  = "slow_query_log"
+    value = "1"
+  }
+}
