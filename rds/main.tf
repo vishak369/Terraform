@@ -68,3 +68,19 @@ resource "aws_rds_cluster_parameter_group" "aurora_pg" {
     value = "1"
   }
 }
+
+resource "aws_rds_cluster_parameter_group" "parameter_grp_1" {
+  name        = "rds-pg"
+  family      = "aurora5.6"
+  description = "RDS test parameter group"
+
+  parameter {
+    name  = "character_set_server"
+    value = "utf8"
+  }
+
+  parameter {
+    name  = "character_set_client"
+    value = "utf8"
+  }
+}
