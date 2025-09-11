@@ -36,3 +36,24 @@ EOF
 }
 
 
+resource "aws_ecr_account_setting" "ecr_account" {
+  name  = "BASIC_SCAN_TYPE_VERSION"
+  value = "AWS_NATIVE"
+  
+}
+
+data "aws_caller_identity" "current" {}
+  
+
+resource "aws_ecr_replication_configuration" "replication" {
+ replication_configuration {
+  rule {
+    destination {
+      region      = "us-west-2"
+      registry_id = data.aws_caller_identity.current.account_id
+    }
+  }
+   
+ }
+
+}
