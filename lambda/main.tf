@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-east-1"
+  region = "us-west-2"
 }
 
 resource "aws_iam_role" "lambda_role" {
@@ -34,6 +34,6 @@ resource "aws_lambda_function" "lambda_fn1" {
   source_code_hash = filebase64sha256("lambda_function.zip")
 
   tags = {
-    Environment = "dev"
+    Environment = "production"
   }
 }
