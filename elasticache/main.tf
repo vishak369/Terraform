@@ -38,3 +38,17 @@ resource "aws_elasticache_replication_group" "example" {
   parameter_group_name        = "default.redis3.2"
   port                        = 6379
 }
+
+resource "aws_elasticache_user" "elasticache-user1"{
+  user_id       = "user1"
+  user_name = "elasticache-user1"
+  access_string = "on ~* +@all"
+  engine        = "redis"
+
+  authentication_mode {
+    type = "iam"
+  }
+  tags = {
+    Environment = "dev"
+  }
+}
